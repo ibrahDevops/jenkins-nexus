@@ -29,7 +29,7 @@ pipeline {
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                        
-                        nexusArtifactUploader()
+                        nexusArtifactUploader(
                             nexusVersion: 'nexus3',
                             
                             protocol: 'http',
@@ -45,13 +45,21 @@ pipeline {
                             credentialsId: 'NEXUS_ID',
                             
                             artifacts: [
+                                
                                 [artifactId: 'pom.my-app',
+                                
                                 classifier: '',
+                                
                                 file: artifactPath,
+                                
                                 type: pom.packaging],
+                                
                                 [artifactId: pom.my-app,
+                                
                                 classifier: '',
+                                
                                 file: "pom.xml",
+                                
                                 type: "pom"]
                             ]
                         );
