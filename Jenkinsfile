@@ -28,14 +28,22 @@ pipeline {
                     artifactExists = fileExists artifactPath;
                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
-                        nexusArtifactUploader(
+                       
+                        nexusArtifactUploader()
                             nexusVersion: 'nexus3',
+                            
                             protocol: 'http',
+                            
                             nexusUrl: '54.174.113.149:8081',
+                            
                             groupId: 'pom.com.mycompany.app',
+                            
                             version: 'pom.1.0-SNAPSHOT',
+                            
                             repository: 'maven-central-repo',
+                            
                             credentialsId: 'NEXUS_ID',
+                            
                             artifacts: [
                                 [artifactId: 'pom.my-app',
                                 classifier: '',
